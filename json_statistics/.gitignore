@@ -1,0 +1,13 @@
+.DS_Store
+*.class
+output
+__pycache__/
+node_modules
+.env
+.editorconfig
+.aws-sam
+.scannerwork
+.liquibase.properties
+code.zip
+packaged.yaml
+
