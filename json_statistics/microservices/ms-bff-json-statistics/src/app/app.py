@@ -12,7 +12,7 @@ app.config['TIMEZONE'] = os.environ['TIMEZONE']
 
 @app.route('/')
 def index():
-    return 'formula ifor ok!'
+    return 'ok!'
 
 @app.errorhandler(422)
 def validation_error(err):
