@@ -41,8 +41,6 @@ def average_var1():
 
                 for z in range (0,len(ciudad)):
 
-                    logging.info(ciudad[z]['values']['var1'])
-                    logging.info(ciudad[z]['name'])
                     var1 = ciudad[z]['values']['var1']
                     suma_var1 = suma_var1 + var1
                     num_ciudades = num_ciudades + 1
@@ -79,8 +77,7 @@ def sum_var2_prov2():
                     ciudad = provincia[y]['children']
 
                     for z in range (0,len(ciudad)):
-                        logging.info(ciudad[z]['values']['var2'])
-                        logging.info(ciudad[z]['name'])
+
                         var2 = ciudad[z]['values']['var2']
                         sum_var2_prov2 = sum_var2_prov2 + var2
 
@@ -114,10 +111,7 @@ def max_var1_reg4():
 
                     for z in range (0,len(ciudad)):
 
-                        logging.info(ciudad[z]['values']['var1'])
-                        logging.info(ciudad[z]['name'])
                         var1 = ciudad[z]['values']['var1']
-
                         array_var1.append(var1)
 
         max_var1_reg4 = max(array_var1)
