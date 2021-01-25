@@ -68,6 +68,7 @@ En caso de necesitar definicion de variables de ambiente utilizar archivo env.ex
 ```sh
 cd migtra/json_statistics/microservices/ms-bff-json-statistics/src
 mv .env.example .env
+```
 
 - ms-bff-work-statistics
 
