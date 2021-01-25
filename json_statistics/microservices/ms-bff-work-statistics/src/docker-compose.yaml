@@ -1,7 +1,7 @@
 version: '3.6'
 services:
   migtra:
-    image: ms-bff-json-statistics:1.0.0
+    image: ms-bff-work-statistics:1.0.0
     build: .
     ports:
       - "5000:5000"
