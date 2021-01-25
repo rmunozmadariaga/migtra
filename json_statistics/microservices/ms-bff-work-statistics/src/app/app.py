@@ -22,6 +22,55 @@ def validation_error(err):
     elif 'json' in messages:
         return send_response(messages.get('json'), 409)
 
+@app.route("/avg_wait_time", methods=['GET'])
+def avg_wait_time():
+    try:
+
+        data = request.json
+
+        num_reg = len(data)
+
+        array_ae = []
+        array_be = []
+
+        for x in range(0,num_reg):
+
+            zone = data[x]['zone']
+
+            if zone == 'AE1' or zone == 'AE2':
+
+                dt_in = data[x]['dt_in']
+                dt_out = data[x]['dt_out']
+
+                t_out = pendulum.parse(dt_out)
+                t_in = pendulum.parse(dt_in)
+
+                wait_minutes = t_out.diff(t_in).in_minutes()
+
+                array_ae.append(wait_minutes)
+
+            elif zone == 'BE1' or zone == 'BE2':
+
+                dt_in = data[x]['dt_in']
+                dt_out = data[x]['dt_out']
+
+                t_out = pendulum.parse(dt_out)
+                t_in = pendulum.parse(dt_in)
+
+                wait_minutes = t_out.diff(t_in).in_minutes()
+
+                array_be.append(wait_minutes)
+
+        avg_ae = round(sum(array_ae) / len(array_ae),2)
+        avg_be = round(sum(array_be) / len(array_be),2)
+
+        return send_response("Promedio de tiempo de espera en zona A es de " + str(avg_ae) + " minutos y en zona B es de "+ str(avg_be) + " minutos", 200)
+
+    except Exception as error:
+        logging.exceptionI('Error en funcion avg_wait_time')
+
+        return send_response(error.args)
+
 @app.route("/aw2_bw2", methods=['GET'])
 def aw2_bw2():
     try:
@@ -46,7 +95,7 @@ def aw2_bw2():
         return send_response("Porcentaje ciclos de faena que incluyeron algun área de trabajo tipo 2 es: " + str(percentage_aw2_bw2) + "%", 200)
 
     except Exception as error:
-        logging.exceptionI('Error en funcion average_var1')
+        logging.exceptionI('Error en funcion aw2_bw2')
 
         return send_response(error.args)
 
@@ -103,7 +152,7 @@ def aw1_aw2_vs_bw1_bw2():
         return send_response("La zona de trabajo con mayor demanda es "+ str(max_work_key) + " con una cantidad de " + str(max_work_value) + " de operaciones registradas y en suma global de trabajo la zona mas utilizada es " + str(max_work_aw_bw_key) + " con una cantidad total de " + str(max_work_aw_bw_value) + " operaciones (" + str(percentage_aw_bw)+ "% de total registrado)", 200)
 
     except Exception as error:
-        logging.exceptionI('Error en funcion average_var1')
+        logging.exceptionI('Error en funcion aw1_aw2_vs_bw1_bw2')
 
         return send_response(error.args)
 

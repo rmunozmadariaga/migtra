@@ -45,6 +45,11 @@ docker-compose up --build
 
 Luego utilice un cliente API REST (Postman como recomendado) y obtendra los resultados solicitados en el ejercicio en las siguientes rutas cargando JSON con registros de faena
 
+- El promedio de tiempo de espera en zonas A y B
+```sh
+localhost:5000/avg_wait_time
+```
+
 - El porcentaje de ciclos de faena que incluyeron alguna área de trabajo tipo 2
 ```sh
 localhost:5000/aw2_bw2
@@ -53,3 +58,21 @@ localhost:5000/aw2_bw2
 ```sh
 localhost:5000/aw1_aw2_vs_bw1_bw2
 ```
+
+### NOTA
+
+En caso de necesitar definicion de variables de ambiente utilizar archivo env.example y renombrarlo a .env
+
+- ms-bff-json-statistics
+
+```sh
+cd migtra/json_statistics/microservices/ms-bff-json-statistics/src
+mv .env.example .env
+
+- ms-bff-work-statistics
+
+```sh
+cd migtra/json_statistics/microservices/ms-bff-work-statistics/src
+mv .env.example .env
+```
+
